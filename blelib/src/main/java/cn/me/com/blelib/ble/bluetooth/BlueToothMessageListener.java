@@ -152,6 +152,7 @@ public class BlueToothMessageListener {
                 currDeviceType = BluetoothUtil.DEVICETYPE_XUEYANGYI;
                 currConnectDevice = device;
                 mBluetoothGatt = device.connectGatt(mContext, false, mGattCallback);
+
                  if (mScanning) {
                      scanLeDevice(false);
                  }
@@ -206,8 +207,6 @@ public class BlueToothMessageListener {
                 if (btService == null) {
                     return;
                 }
-
-                //btService.getCharacteristic(uuid)
 
 
                 //数据通知uuid列表
