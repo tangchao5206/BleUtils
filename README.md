@@ -17,6 +17,7 @@
 #3.代码中如何使用
   
 1.在blelib里BluetoothUtil类里配置蓝牙uuid，蓝牙设备名称（一般蓝牙协议文档上回明确给出相应的uuid）
+    
     //设备标识((按上面设备类型顺序填写))
     public final static String DEVICENAMETAGS_XUEYANGYI    = "iChoice"; //血氧蓝牙设备名称
     public final static String DEVICENAMETAGS_TIZHONGCHENG = "eBody-Scale";
@@ -43,6 +44,7 @@
 
 
 2.蓝牙辅助类初始化
+  
   btMsgListener = new BlueToothMessageListener(this, btMsgCallBack);
         int respose = btMsgListener.startListenerMessage();//蓝牙初始化状态
         if (respose>0){
@@ -66,7 +68,9 @@
      /**
      *回调
      */
-    IBlueToothMessageCallBack btMsgCallBack = new IBlueToothMessageCallBack() {
+  
+  
+ IBlueToothMessageCallBack btMsgCallBack = new IBlueToothMessageCallBack() {
 
         @Override
         public void onReceiveMessage(Object data) {
