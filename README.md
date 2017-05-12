@@ -65,11 +65,8 @@
        在blelib里 BloodO2DataHandle类里是我对我公司血氧设备收到数据的处理类
 		
 
-4.数据回调
-     /**
-     *回调
-     */
-  
+4.数据回调<br>
+    
   
  IBlueToothMessageCallBack btMsgCallBack = new IBlueToothMessageCallBack() {
 
