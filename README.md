@@ -43,11 +43,9 @@
 	
 
 
-2.蓝牙辅助类初始化
+2.蓝牙辅助类初始化<br>
   //
-   /**
-     *回调
-     */
+ 
      btMsgListener = new BlueToothMessageListener(this, btMsgCallBack);
         int respose = btMsgListener.startListenerMessage();//蓝牙初始化状态
         if (respose>0){
