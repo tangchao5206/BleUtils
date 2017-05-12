@@ -146,6 +146,7 @@ public class BlueToothMessageListener {
             //  BluetoothDevice  name=eBody-Scale address=BC:6A:29:26:97:5E
             ULog.d(TAG,"BluetoothDevice  name=" + device.getName() + " address=" + device.getAddress());
             //  BluetoothDevice  name=eBody-Scale address=BC:6A:29:26:97:5E
+            //根据蓝牙名称或者mac地址找到对应的蓝牙设备
              if (BluetoothUtil.DEVICENAMETAGS_XUEYANGYI.equals(device.getName())) {
                 deviceDataHandler = new BloodO2DataHandle(btMsgCallBack);
                 currDeviceType = BluetoothUtil.DEVICETYPE_XUEYANGYI;
@@ -181,6 +182,7 @@ public class BlueToothMessageListener {
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                 //连接状态改变为未连接
                 deviceDataHandler.notifyActionToUser("no connected");
+                //断开后延时一秒再扫描连接
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -192,6 +194,8 @@ public class BlueToothMessageListener {
 
         @Override
         public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+            //发现服务后的回调
+
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 //搜寻设备完毕，写入数据特征到设备中
 
@@ -284,12 +288,11 @@ public class BlueToothMessageListener {
      */
     public void writeLlsAlertLevel(byte[] bb) {
 
-        BluetoothGattService linkLossService = mBluetoothGatt.getService(UUID.fromString(BluetoothUtil.getDeviceServiceUUID(currDeviceType)));
-        if (linkLossService == null) {
+        if (btService == null) {
             ULog.e(TAG, "link loss Alert service not found!");
             return;
         }
-        BluetoothGattCharacteristic alertLevel = linkLossService.getCharacteristic(UUID.fromString(BluetoothUtil.getWriteUUIDByDeviceType(currDeviceType)));
+        BluetoothGattCharacteristic alertLevel = btService.getCharacteristic(UUID.fromString(BluetoothUtil.getWriteUUIDByDeviceType(currDeviceType)));
 
         if (alertLevel == null) {
             ULog.e(TAG, "link loss Alert Level charateristic not found!");
