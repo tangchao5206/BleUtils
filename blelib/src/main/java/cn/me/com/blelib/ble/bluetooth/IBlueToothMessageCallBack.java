@@ -27,6 +27,8 @@ public interface IBlueToothMessageCallBack {
     void writeData(byte[] bs);
 
 
+
+
     void onServicesDiscovered();
 
     void onDescriptorWriteSuccess();
