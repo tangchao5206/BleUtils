@@ -26,6 +26,7 @@
                 .setBleMac(DEVICE_MAC_SPO2);
     
   2.  //检测手机能否支持蓝牙ble，支持就开始
+  
         int respose = btMsgListener.checkBle();
         if (respose>0){
             ULog.showToast(this,"蓝牙初始化成功");
